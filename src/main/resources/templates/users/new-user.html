@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	
+	<div class="container">
+		<form action="/users/save" th:object="${user}" method="POST">
+		
+		<input type="text" placeholder="Full Name" th:field="${user.fullName}">
+		<input type="text" placeholder="Age" th:field="${user.age}">
+		<input type="text" placeholder="Employed" th:field="${user.employed}">
+		<input type="text" placeholder="Gender" th:field="${user.gender}">
+		<input type="text" placeholder="Email" th:field="${user.email}">
+		
+		<select th:field="*{payments}" multiple="multiple">
+			<option th:each="payment : ${allPayments}"
+					th:value="${payment.paymentId}"
+					th:text="${payment.value}">
+			</option>
+		</select>
+		
+		<button type="submit">Create user</button>
+		
+		</form>
+	</div>
+	
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3>Main Dashboard</h3>
+		<a th:text="${versionNumber}"></a>
+		<hr>
+		<h4>Current Payments</h4>
+		<div class="row">
+			<div class="col-md-6">
+				<hr>
+				<!-- Add New Payment Button -->
+				<a th:href="@{/payments/new}" class="btn btn-primary btn-sm mb-3">
+					New Payment
+				</a>
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Place</th>
+							<th>Value</th>
+							<th>date</th>
+						</tr> 
+					</thead>
+					<tbody>
+						<tr th:each="payment : ${payments}">
+							<td th:text="${payment.place}"></td>
+							<td th:text="${payment.value}"></td>
+							<td th:text="${payment.date}"></td>
+						</tr>		
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<canvas id="myPieChart" height="50" width="50"></canvas>
+				
+				<script>
+					var chartData = "[[${userPymtSumToChart}]]"
+				</script>
+			</div>
+		</div>
+	</div>
+<br>
+<br>	
+	<div class="container">
+	<h4>Current Users Payments</h4>
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th>Full Name </th>
+							<th>Payment Count</th>
+						</tr> 
+					</thead>
+					<tbody>
+						<tr th:each="aUserPymtSum : ${userGroupListSumPaymt}">
+							<td th:text="${aUserPymtSum.fullName}"></td>
+							<td th:text="${aUserPymtSum.sumOfValues}"></td>
+						</tr>
+					</tbody>
+				</table>
+	<!-- 		<table class="table table-bordered table-striped"> -->
+	<!-- 			<thead class="thead-dark"> -->
+	<!-- 				<tr> -->
+	<!-- 					<th>Full Name </th> -->
+	<!-- 					<th>Payment Count</th> -->
+	<!-- 				</tr>  -->
+	<!-- 			</thead> -->
+	<!-- 			<tbody> -->
+	<!-- 				<tr th:each="aUserPaymentCnt : ${userListPaymentCount}"> -->
+	<!-- 					<td th:text="${aUserPaymentCnt.fullName}"></td> -->
+	<!-- 					<td th:text="${aUserPaymentCnt.paymentCount}"></td> -->
+	<!-- 				</tr> -->
+	<!-- 			</tbody> -->
+	<!-- 		</table> -->
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{js/myChart.js}"></script>
+</body>
+</html>

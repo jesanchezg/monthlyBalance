@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+	<div class="container">
+		<form action="/payments/save" th:object="${payment}" method="POST">
+		
+		<input type="text" placeholder="Place: " th:field="${payment.place}">
+		<input type="text" placeholder="Value: " th:field="${payment.value}">
+		<input type="date" placeholder="Date: " th:field="${payment.date}">
+		
+		<button type="submit">Create Payment</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layouts :: header"></head>
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+	<div class="container">
+		<h3>Current Users</h3>
+		<hr>
+		<!-- Add New User Button -->
+		<a th:href="@{/users/new}" class="btn btn-primary btn-sm mb-3">
+			New User
+		</a>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Full Name </th>
+					<th>Age </th>
+					<th>Employed</th>
+					<th>Gender</th>
+					<th>Email</th>
+					<th>Group</th>
+				</tr> 
+			</thead>
+			<tbody>
+				<tr th:each="aUser : ${users}">
+					<td th:text="${aUser.fullName}"></td>
+					<td th:text="${aUser.age}"></td>
+					<td th:text="${aUser.employed}"></td>
+					<td th:text="${aUser.gender}"></td>
+					<td th:text="${aUser.email}"></td>
+					<td th:if="${aUser.groupUsersId} != null" th:text="${aUser.groupUsersId.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

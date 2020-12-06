@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layouts :: header"></head>
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+	<div class="container">
+		<h3>Current Groups</h3>
+		<hr>
+		<!-- Add New Group User Button -->
+		<a th:href="@{/groups/new}" class="btun btn-primary btn-sm mb-3">
+			New Group
+		</a>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+				</tr> 
+			</thead>
+			<tbody>
+				<tr th:each="aGroupUser : ${lstGroupUser}">
+					<td th:text="${aGroupUser.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

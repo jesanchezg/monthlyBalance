@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="layouts :: header"></head>
+<body>
+	<nav th:replace="layouts :: navbar"></nav>
+	<div class="container">
+		<h3>Current Payments</h3>
+		<hr>
+		<!-- Add New Payment Button -->
+		<a th:href="@{/payments/new}" class="btn btn-primary btn-sm mb-3">
+			New Payment
+		</a>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Place</th>
+					<th>Value</th>
+					<th>date</th>
+				</tr> 
+			</thead>
+			<tbody>
+				<tr th:each="payment : ${payments}">
+					<td th:text="${payment.place}"></td>
+					<td th:text="${payment.value}"></td>
+					<td th:text="${payment.date}"></td>
+				</tr>		
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
